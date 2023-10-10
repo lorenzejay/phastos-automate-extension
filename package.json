@@ -2,7 +2,7 @@
   "name": "phastos-automate",
   "displayName": "Phastos Automate",
   "description": "Automating your Codebase from VS Code",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.82.0"
   },

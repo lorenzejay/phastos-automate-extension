@@ -1,4 +1,4 @@
-# phastos-automate (v0.1.0-beta.0) README
+# phastos-automate (v0.1.0) README
 
 Extension Link: [coming soon]()
 
@@ -34,6 +34,6 @@ This extension contributes the following settings:
 
 Users appreciate release notes as you update your extension.
 
-### 0.1.0-beta.0 - October 9, 2023
+### 0.1.0 - October 9, 2023
 
 Initial release of phastos-automate. With the 3 core automations for terminal processes, browser and applications openings.
