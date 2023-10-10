@@ -6,6 +6,10 @@
   "engines": {
     "vscode": "^1.82.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lorenzejay/phastos-automate-extension.git"
+  },
   "categories": [
     "Other"
   ],
