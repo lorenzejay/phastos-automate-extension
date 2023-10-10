@@ -12,8 +12,6 @@ These are triggered on launch, or using the command palette - `(command + p)` an
 
 Config through your .vscode/settings file or user settings (be workspace specific)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
 ## Requirements
 
 This extension is designed exclusively for `macOS` users. Please refrain from installing if you're using a different operating system.
@@ -43,5 +41,3 @@ Users appreciate release notes as you update your extension.
 ### 0.1.0-beta.0 - October 9, 2023
 
 Initial release of phastos-automate. With the 3 core automations for terminal processes, browser and applications openings.
-
----
