@@ -1,0 +1,167 @@
+{
+  "name": "Phastos Automate",
+  "displayName": "Phastos Automate",
+  "description": "Automating your Codebase from VS Code",
+  "version": "0.1.0-beta.0",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Phastos Automation Configurations",
+      "properties": {
+        "phastos-automate.autoRunAll": {
+          "type": "boolean",
+          "title": "Automatically Trigger all Workspace automations.",
+          "description": "Enable this extension to run automatically when you open this workspace",
+          "scope": "resource",
+          "properties": {
+            "runAll": {
+              "title": "Run all automations",
+              "type": "boolean"
+            }
+          }
+        },
+        "phastos-automate.autoRunWorkspaceAppsOnLaunch": {
+          "title": "Launch peripheral apps on launch",
+          "description": "Automatically launch apps when workspace opens",
+          "type": "boolean",
+          "scope": "resource"
+        },
+        "phastos-automate.autoRunTerminalsOnLaunch": {
+          "title": "Run terminal specific workspaces",
+          "description": "Automatically launch terminal with provided context workspace opens",
+          "type": "boolean",
+          "scope": "resource"
+        },
+        "phastos-automate.autoRunBrowsersOnLaunch": {
+          "title": "Run terminal specific workspaces",
+          "description": "Automatically launch chromium based browser when workspace opens",
+          "type": "boolean",
+          "scope": "resource"
+        },
+        "phastos-automate.workspaceApps": {
+          "type": "array",
+          "default": [],
+          "title": "Workspace Apps",
+          "description": "Open workspace specific apps that you need - such as pgAdmin4, Postgres, DBeaver, Spotify",
+          "scope": "resource",
+          "items": {
+            "type": "string"
+          }
+        },
+        "phastos-automate.browserConfig": {
+          "type": "object",
+          "default": {},
+          "title": "Browser Config",
+          "description": "Automate opening your favorite browser or populate its tabs. Currently supporting Safari, Google Chrome, Brave Browser and Arc with spaces",
+          "scope": "resource",
+          "properties": {
+            "browser": {
+              "type": "string"
+            },
+            "spaceName": {
+              "type": "string"
+            },
+            "tabs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "automaticallyRunOnLaunch": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "phastos-automate.terminalConfig": {
+          "type": "object",
+          "properties": {
+            "useNewTabOrSplit": {
+              "type": "boolean",
+              "title": "Should open multiple terminal windows or split inside one window.",
+              "description": "If using macos default terminal please avoid focusing away from window as terminal opens if split is true, otherwise, split won't work properly."
+            },
+            "terminal": {
+              "type": "string",
+              "title": "Choose between integrated or external terminal (Iterm, default mac terminal)"
+            },
+            "workspaces": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "filePath": {
+                    "type": "string"
+                  },
+                  "command": {
+                    "type": "string"
+                  },
+                  "opensVSCode": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "filePath"
+                ]
+              }
+            }
+          },
+          "title": "Terminal Config",
+          "default": {
+            "useNewTabOrSplit": false,
+            "workspaces": []
+          },
+          "description": "Configuration for commands and filepaths for opening terminal or Iterm2 outside of VS Code",
+          "scope": "resource"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "phastos-automate.openChromiumBrowser",
+        "title": "Phastos Automate: Open Browser Context"
+      },
+      {
+        "command": "phastos-automate.openTerminalProcess",
+        "title": "Phastos Automate: Open Terminal Context"
+      },
+      {
+        "command": "phastos-automate.openWorkspaceApps",
+        "title": "Phastos Automate: Open Workspace Apps"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.2",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.82.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/test-electron": "^2.3.4",
+    "eslint": "^8.50.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "node-jxa-workspace-automation": "^1.1.16"
+  }
+}
