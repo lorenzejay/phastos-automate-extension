@@ -8,7 +8,7 @@ This is the README for your extension "phastos-automate". After writing up a bri
 2. Open chromium based browsers like Google Chrome, Brave and even Arc. Select which space for Arc and populate your tabs.
 3. Open other applications you have installed.
 
-These are triggered on launch, or using the command palette - `(command + t)`
+These are triggered on launch, or using the command palette - `(command + p)` and searching Phastos Automate:
 
 Config through your .vscode/settings file or user settings (be workspace specific)
 
@@ -20,7 +20,7 @@ This extension is designed exclusively for `macOS` users. Please refrain from in
 
 ## Extension Settings
 
-Create a .vscode/settings.json file or using command palette `(command + t)`
+Create a .vscode/settings.json file or using command palette `(command + p)`
 
 This extension contributes the following settings:
 
