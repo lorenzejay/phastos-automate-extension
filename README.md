@@ -1,4 +1,6 @@
-# phastos-automate README
+# phastos-automate (v0.1.0-beta.0) README
+
+Extension Link: [coming soon]()
 
 This is the README for your extension "phastos-automate". After writing up a brief description, we recommend including the following sections.
 
@@ -29,10 +31,6 @@ This extension contributes the following settings:
 - `phastos-automate.workspaceApps` : Set an array of applications you want to launch open.
 - `phastos-automate.browserConfig` : Set an browser context for automating opening browser (Google Chrome, Arc, and Brave) with specific tabs.
 - `phastos-automate.terminalConfig` : Set an terminal context for automating running processes like `npm run dev` for your project or even open new VS Code windows based on passed filepath.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
 
 ## Release Notes
 
