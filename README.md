@@ -2,8 +2,6 @@
 
 Extension Link: [coming soon]()
 
-This is the README for your extension "phastos-automate". After writing up a brief description, we recommend including the following sections.
-
 ## Features
 
 1. Based on your phastos-automate configurations, you can launch processes from macos built in terminal or Iterm2.
