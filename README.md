@@ -1,6 +1,6 @@
-# phastos-automate (v0.1.0) README
+# phastos-automate (v0.1.0)
 
-Extension Link: [coming soon]()
+[Install on VS Code Here](https://marketplace.visualstudio.com/items?itemName=LorenzeJayHernandez.phastos-automate)
 
 ## Features
 
