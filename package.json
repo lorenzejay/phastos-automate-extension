@@ -6,7 +6,7 @@
   "engines": {
     "vscode": "^1.82.0"
   },
-  "publisher": "LorenzeJayHernandez",
+  "publisher": "PhastosToolkit",
   "repository": {
     "type": "git",
     "url": "git@github.com:lorenzejay/phastos-automate-extension.git"
@@ -31,27 +31,37 @@
           "properties": {
             "runAll": {
               "title": "Run all automations",
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             }
           }
+        },
+        "phastos-automate.telemetryEnabled": {
+          "description": "Enable/disable telemetry data collection.",
+          "type": "boolean",
+          "scope": "application",
+          "default": true
         },
         "phastos-automate.autoRunWorkspaceAppsOnLaunch": {
           "title": "Launch peripheral apps on launch",
           "description": "Automatically launch apps when workspace opens",
           "type": "boolean",
-          "scope": "resource"
+          "scope": "resource",
+          "default": false
         },
         "phastos-automate.autoRunTerminalsOnLaunch": {
           "title": "Run terminal specific workspaces",
           "description": "Automatically launch terminal with provided context workspace opens",
           "type": "boolean",
-          "scope": "resource"
+          "scope": "resource",
+          "default": false
         },
         "phastos-automate.autoRunBrowsersOnLaunch": {
           "title": "Run terminal specific workspaces",
           "description": "Automatically launch chromium based browser when workspace opens",
           "type": "boolean",
-          "scope": "resource"
+          "scope": "resource",
+          "default": false
         },
         "phastos-automate.workspaceApps": {
           "type": "array",
@@ -60,12 +70,12 @@
           "description": "Open workspace specific apps that you need - such as pgAdmin4, Postgres, DBeaver, Spotify",
           "scope": "resource",
           "items": {
-            "type": "string"
+            "type": "string",
+            "default": "Safari"
           }
         },
         "phastos-automate.browserConfig": {
           "type": "object",
-          "default": {},
           "title": "Browser Config",
           "description": "Automate opening your favorite browser or populate its tabs. Currently supporting Safari, Google Chrome, Brave Browser and Arc with spaces",
           "scope": "resource",
@@ -81,10 +91,6 @@
               "items": {
                 "type": "string"
               }
-            },
-            "automaticallyRunOnLaunch": {
-              "type": "boolean",
-              "default": false
             }
           }
         },
@@ -122,10 +128,6 @@
             }
           },
           "title": "Terminal Config",
-          "default": {
-            "useNewTabOrSplit": false,
-            "workspaces": []
-          },
           "description": "Configuration for commands and filepaths for opening terminal or Iterm2 outside of VS Code",
           "scope": "resource"
         }
@@ -167,6 +169,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@vscode/extension-telemetry": "^0.8.5",
     "node-jxa-workspace-automation": "^1.1.16"
   }
 }

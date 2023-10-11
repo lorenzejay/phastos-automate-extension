@@ -1,4 +1,4 @@
-export type Terminals = 'Iterm' | 'Terminal'
+export type Terminals = 'Iterm' | 'Terminal' | 'Iterm2'
 export interface Workspace {
   filePath: string
   command: string
@@ -18,6 +18,11 @@ export interface BrowserConfig {
 export type WorkspaceApps = string[]
 export interface TerminalConfigContext {
   terminal: Terminals
-  workspaces: { filePath: string; command: string; opensVSCode: boolean }[]
+  workspaces: {
+    filePath: string
+    command?: string
+    opensVSCode?: boolean
+    usesDocker?: boolean
+  }[]
   useNewTabOrSplit: boolean
 }

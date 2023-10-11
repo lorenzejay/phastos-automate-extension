@@ -31,23 +31,50 @@ export function runAll({
   }
 }
 
+function errorMessageWithRedirectToSettings(
+  message: string,
+  option: string,
+  settingId: string
+) {
+  return vscode.window.showErrorMessage(message, option).then((selection) => {
+    if (selection === option) {
+      vscode.commands.executeCommand(
+        'workbench.action.openWorkspaceSettings',
+        settingId
+      )
+    }
+  })
+}
+
 export async function handleBrowserConfig(config: BrowserConfig) {
+  if (Object.keys(config).length === 0) {
+    return errorMessageWithRedirectToSettings(
+      'No browser config set',
+      'Configure workspace browser context',
+      'phastos-automate.browserConfig'
+    )
+  }
   try {
     const { browser, spaceName, tabs } = config
-
     openChromiumBrowser({
       browser,
       spaceName,
       tabs,
     })
   } catch (error: any) {
-    console.log('error', error)
-
+    console.log('error 12', error)
     vscode.window.showErrorMessage(error)
   }
 }
 
 export async function handleOpeningWorkspaceApps(workspaceApps: WorkspaceApps) {
+  if (workspaceApps.length === 0) {
+    return errorMessageWithRedirectToSettings(
+      'No workspace apps config set',
+      'Configure workspace apps to launch',
+      'phastos-automate.workspaceApps'
+    )
+  }
   for (const app of workspaceApps) {
     try {
       await openApp(app)
@@ -62,35 +89,33 @@ export async function handleOpeningWorkspaceApps(workspaceApps: WorkspaceApps) {
 export async function handleOpeningWorkspaceInTerminal(
   terminalContext: TerminalConfigContext
 ) {
-  const { workspaces, useNewTabOrSplit } = terminalContext
-
-  if (terminalContext.terminal === 'Iterm') {
-    await openItermContext({
-      useSplitPanes: useNewTabOrSplit,
-      workspaces: workspaces,
-    })
-  } else {
-    await openTerminalContext({
-      useNewTab: useNewTabOrSplit,
-      workspaces: workspaces,
-    })
+  if (Object.keys(terminalContext).length === 0) {
+    return errorMessageWithRedirectToSettings(
+      'No terminal context config set',
+      'Configure workspace terminal context',
+      'phastos-automate.terminalConfig'
+    )
   }
-}
-
-// export const openChromiumBrowserCommand = (browserConfig: BrowserConfig) => {
-//   if (browserConfig) {
-//     handleBrowserConfig(browserConfig as BrowserConfig)
-//   }
-// }
-
-export const openTerminalProcessCommand = (
-  terminalConfig: TerminalConfigContext
-) => {
-  // const config = vscode.workspace.getConfiguration('phastos-automate')
-  if (terminalConfig) {
-    handleOpeningWorkspaceInTerminal(terminalConfig as TerminalConfigContext)
+  try {
+    const { workspaces, useNewTabOrSplit, terminal } = terminalContext
+    const terminalL = terminal.toLocaleLowerCase()
+    if (terminalL === 'iterm' || terminalL === 'iterm2') {
+      await openItermContext({
+        useSplitPanes: useNewTabOrSplit,
+        workspaces: workspaces,
+      })
+    } else {
+      await openTerminalContext({
+        useNewTab: useNewTabOrSplit,
+        workspaces: workspaces,
+      })
+    }
+  } catch (error: any) {
+    console.log('error', error)
+    vscode.window.showErrorMessage(
+      error?.message
+        ? error.message
+        : `Something went wrong opening ${terminalContext.terminal}`
+    )
   }
-  vscode.window.showInformationMessage(
-    `Successfully opened ${terminalConfig.terminal}`
-  )
 }
