@@ -82,10 +82,15 @@ Open Visual Studio Code settings.
 
 Thank you for helping us make this extension better for everyone! 🙏
 
-## Release Notes
+## Changelog
 
 Users appreciate release notes as you update your extension.
 
 ### 0.1.0 - October 9, 2023
 
 Initial release of phastos-automate. With the 3 core automations for terminal processes, browser and applications openings.
+
+### 0.1.1 - October 12, 2023
+
+- Added icon for extension
+- semver scripts in package.json for scripts
