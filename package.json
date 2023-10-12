@@ -1,7 +1,7 @@
 {
   "name": "phastos-automate",
   "displayName": "Phastos Automate",
-  "description": "Automating your Codebase from VS Code",
+  "description": "Getting workspace to ready state in seconds.",
   "version": "0.1.1",
   "engines": {
     "vscode": "^1.82.0"

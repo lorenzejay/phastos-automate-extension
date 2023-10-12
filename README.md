@@ -1,4 +1,6 @@
-# phastos-automate (v0.1.0)
+# phastos-automate ![Visual Studio Marketplace Last Updated](https://img.shields.io/visual-studio-marketplace/last-updated/phastostoolkit.phastos-automate)
+
+[![Install on VS Code](https://img.shields.io/badge/Install%20on-VS%20Code-blue?style=for-the-badge&logo=visual%20studio%20code)](https://marketplace.visualstudio.com/items?itemName=PhastosToolkit.phastos-automate)
 
 Phastos Automate is an extension that executes automations such as launching workspace specific process (terminal, running commands), opening other applications like Spotify or Notion and even opening your browser with the tabs unique for your current work context. Automations run through user preferences such as automatically launching when VSCode finishes opening or triggered through the command palette.
 
