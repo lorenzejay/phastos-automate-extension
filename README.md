@@ -4,6 +4,8 @@
 
 Phastos Automate is an extension that executes automations such as launching workspace specific process (terminal, running commands), opening other applications like Spotify or Notion and even opening your browser with the tabs unique for your current work context. Automations run through user preferences such as automatically launching when VSCode finishes opening or triggered through the command palette.
 
+![Phastos Automate prevew](https://github.com/lorenzejay/phastos-automate-extension/blob/main/assets/phastos-automate.gif)
+
 ## Features
 
 1. Based on your phastos-automate configurations, you can launch processes from macos built in terminal or Iterm2.
