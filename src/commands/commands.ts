@@ -106,7 +106,7 @@ export async function handleFocusMode(focusMode: FocusModeConfig) {
   } else {
     vscode.window.showInformationMessage(
       'Focus mode not enabled',
-      'Configure workspace focus mode',
+      'Configure workspace focus mode context',
       'phastos-automate.focusMode'
     )
   }
