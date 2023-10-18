@@ -3,10 +3,12 @@ import {
   openChromiumBrowser,
   openItermContext,
   openTerminalContext,
+  closeOutsideContextApps,
 } from 'node-jxa-workspace-automation'
 import * as vscode from 'vscode'
 import {
   BrowserConfig,
+  FocusModeConfig,
   TerminalConfigContext,
   WorkspaceApps,
 } from '../types/types'
@@ -15,16 +17,25 @@ export function runAll({
   terminalConfig,
   browserConfig,
   workspaceApps,
+  focusMode,
 }: {
   terminalConfig: any
   browserConfig: any
   workspaceApps: any
+  focusMode: any
 }) {
+  if (focusMode) {
+    handleOpeningWorkspaceApps(workspaceApps as WorkspaceApps)
+  }
+
   if (terminalConfig) {
     handleOpeningWorkspaceInTerminal(terminalConfig as TerminalConfigContext)
   }
   if (browserConfig) {
     handleBrowserConfig(browserConfig as BrowserConfig)
+  }
+  if (workspaceApps) {
+    handleOpeningWorkspaceApps(workspaceApps as WorkspaceApps)
   }
   if (workspaceApps) {
     handleOpeningWorkspaceApps(workspaceApps as WorkspaceApps)
@@ -84,6 +95,20 @@ export async function handleOpeningWorkspaceApps(workspaceApps: WorkspaceApps) {
         error?.message ? error.message : `Something went wrong opening ${app}`
       )
     }
+  }
+}
+
+export async function handleFocusMode(focusMode: FocusModeConfig) {
+  if (focusMode.enabled) {
+    closeOutsideContextApps(
+      focusMode.focusedApps.length <= 0 ? ['Code'] : focusMode.focusedApps
+    )
+  } else {
+    vscode.window.showInformationMessage(
+      'Focus mode not enabled',
+      'Configure workspace focus mode',
+      'phastos-automate.focusMode'
+    )
   }
 }
 export async function handleOpeningWorkspaceInTerminal(

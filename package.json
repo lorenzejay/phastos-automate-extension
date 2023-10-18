@@ -64,6 +64,13 @@
           "scope": "resource",
           "default": false
         },
+        "phastos-automate.autoRunFocusMode": {
+          "title": "Run Focus Mode",
+          "description": "Automatically launch chromium based browser when workspace opens",
+          "type": "boolean",
+          "scope": "resource",
+          "default": false
+        },
         "phastos-automate.workspaceApps": {
           "type": "array",
           "default": [],
@@ -73,6 +80,31 @@
           "items": {
             "type": "string",
             "default": "Safari"
+          }
+        },
+        "phastos-automate.focusMode": {
+          "title": "Enable/disable focus mode.",
+          "description": "Quits all applications not in app context, VS Code, by default will always be included.",
+          "type": "object",
+          "default": {
+            "enabled": true,
+            "focusedApps": [
+              "Code"
+            ]
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "focusedApps": {
+              "type": "array",
+              "description": "apps not to quit in focus mode",
+              "properties": {
+                "apps": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "phastos-automate.browserConfig": {
@@ -146,6 +178,10 @@
       {
         "command": "phastos-automate.openWorkspaceApps",
         "title": "Phastos Automate: Open Workspace Apps"
+      },
+      {
+        "command": "phastos-automate.focusMode",
+        "title": "Phastos Automate: Focus Mode"
       }
     ]
   },
@@ -175,6 +211,6 @@
   },
   "dependencies": {
     "@vscode/extension-telemetry": "^0.8.5",
-    "node-jxa-workspace-automation": "^1.1.16"
+    "node-jxa-workspace-automation": "^1.2.0"
   }
 }

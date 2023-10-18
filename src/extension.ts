@@ -4,12 +4,14 @@ import * as os from 'os'
 
 import {
   handleBrowserConfig,
+  handleFocusMode,
   handleOpeningWorkspaceApps,
   handleOpeningWorkspaceInTerminal,
   runAll,
 } from './commands/commands'
 import {
   BrowserConfig,
+  FocusModeConfig,
   TerminalConfigContext,
   WorkspaceApps,
 } from './types/types'
@@ -61,6 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
   const autoRunAll: boolean = config.get('autoRunAll') as boolean
   const browserConfig = config.get('browserConfig', {})
   const workspaceApps = config.get('workspaceApps')
+  const focusMode = config.get('focusMode')
   const telemetryEnabled = config.get('telemetryEnabled', true)
   const terminalConfig = config.get('terminalConfig')
   const autoRunWorkspaceAppsOnLaunch = config.get(
@@ -68,6 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
   )
   const autoRunTerminalsOnLaunch = config.get('autoRunTerminalsOnLaunch')
   const autoRunBrowsersOnLaunch = config.get('autoRunBrowsersOnLaunch')
+  const autoRunFocusMode = config.get('autoRunFocusMode')
 
   outputChannel.appendLine(
     'terminal config: ' + JSON.stringify(terminalConfig, null, 4)
@@ -86,6 +90,8 @@ export function activate(context: vscode.ExtensionContext) {
   outputChannel.appendLine(
     'autoRunTerminalsOnLaunch: ' + autoRunTerminalsOnLaunch
   )
+  outputChannel.appendLine('focusMode: ' + JSON.stringify(focusMode))
+  outputChannel.appendLine('autoRunFocusMode: ' + autoRunFocusMode)
 
   function sendTelemetryEventIfEnabled(
     eventName: string,
@@ -97,8 +103,12 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   if (autoRunAll) {
-    runAll({ terminalConfig, browserConfig, workspaceApps })
+    runAll({ terminalConfig, browserConfig, workspaceApps, focusMode })
   }
+  if (autoRunFocusMode) {
+    handleFocusMode(focusMode as FocusModeConfig)
+  }
+
   if (autoRunTerminalsOnLaunch) {
     handleOpeningWorkspaceInTerminal(terminalConfig as TerminalConfigContext)
   }
@@ -132,7 +142,15 @@ export function activate(context: vscode.ExtensionContext) {
       sendTelemetryEventIfEnabled('openWorkspaceApps')
     }
   )
+  const focusModeDisposable = vscode.commands.registerCommand(
+    'phastos-automate.focusMode',
+    () => {
+      handleFocusMode(focusMode as FocusModeConfig)
+      sendTelemetryEventIfEnabled('focusMode')
+    }
+  )
 
+  context.subscriptions.push(focusModeDisposable)
   context.subscriptions.push(openChromiumBrowserDisposable)
   context.subscriptions.push(openTerminalProcessDisposable)
   context.subscriptions.push(openWorkspaceAppsDisposable)

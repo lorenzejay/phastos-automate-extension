@@ -26,3 +26,8 @@ export interface TerminalConfigContext {
   }[]
   useNewTabOrSplit: boolean
 }
+
+export interface FocusModeConfig {
+  enabled: boolean
+  focusedApps: string[]
+}
