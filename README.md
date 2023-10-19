@@ -4,7 +4,7 @@
 
 Phastos Automate is an extension that executes automations such as launching workspace specific process (terminal, running commands), opening other applications like Spotify or Notion and even opening your browser with the tabs unique for your current work context. Automations run through user preferences such as automatically launching when VSCode finishes opening or triggered through the command palette.
 
-![Phastos Automate prevew](https://github.com/lorenzejay/phastos-automate-extension/blob/main/assets/phastos-automate.gif)
+![Phastos Automate preview](https://github.com/lorenzejay/phastos-automate-extension/blob/main/assets/phastos-automate.gif)
 
 ## Features
 
@@ -38,6 +38,14 @@ You can copy this to get started:
     "tabs": [],
     "spaceName": // if using Arc then fill else remove
   },
+  "phastos-automate.autoRunFocusMode": false,
+  "phastos-automate.focusMode": {
+    "enabled": true, // set to false if you do not want to run this
+    "focusedApps": [
+      "Code",
+      "Spotify"
+    ]
+  }
   "phastos-automate.terminalConfig": {
     "terminal": "Iterm", // Iterm or Terminal
     "useNewTabOrSplit": true,
@@ -61,6 +69,7 @@ This extension contributes the following settings:
 - `phastos-automate.workspaceApps` : Set an array of applications you want to launch open.
 - `phastos-automate.browserConfig` : Set an browser context for automating opening browser (Google Chrome, Arc, and Brave) with specific tabs.
 - `phastos-automate.terminalConfig` : Set an terminal context for automating running processes like `npm run dev` for your project or even open new VS Code windows based on passed filepath.
+- `phastos-automate.focusMode` : Automatically quit apps not selected for your workspace.
 
 ## Telemetry
 
