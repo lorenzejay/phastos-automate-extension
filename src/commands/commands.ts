@@ -97,12 +97,22 @@ export async function handleOpeningWorkspaceApps(workspaceApps: WorkspaceApps) {
     }
   }
 }
-
+function mergeArrays(arr1: string[], arr2: string[]) {
+  if (arr2.length === 0) {
+    return arr1
+  }
+  return arr1.concat(arr2)
+}
 export async function handleFocusMode(focusMode: FocusModeConfig) {
+  // we should never quit VS Codes
+  const defaultPersistedApps = ['Visual Studio Code', 'Code']
+
   if (focusMode.enabled) {
-    closeOutsideContextApps(
-      focusMode.focusedApps.length <= 0 ? ['Code'] : focusMode.focusedApps
+    const persistedApps = mergeArrays(
+      defaultPersistedApps,
+      focusMode.focusedApps
     )
+    closeOutsideContextApps(persistedApps)
   } else {
     vscode.window.showInformationMessage(
       'Focus mode not enabled',
